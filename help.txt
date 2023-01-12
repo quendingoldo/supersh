@@ -26,6 +26,11 @@ COMMANDS
         This values can be restored even after killing app or rebooting
         computer.
         If no <filename> is provided, values are saved to vars.txt
+    
+    #load <filename>
+        Loads variable values from file with name <filename>.
+        If no <filename> is provided, values are loaded from vars.txt
+        NOTE: Current variables could be overridden by those in this file.
 
 
 EXPRESSIONS
