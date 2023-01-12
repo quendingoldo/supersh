@@ -14,7 +14,7 @@ while True:
         continue
 
     # If input is valid, evaluate commands or expressions
-    # HERE 
+    # ↓↓↓ HERE WRITE YOUR CODE ↓↓↓
     if ...:
         pass
 
@@ -22,4 +22,5 @@ while True:
 
 
     else:
+        # If the input is only an expression, print value
         print(eval(cmd, globs | var))

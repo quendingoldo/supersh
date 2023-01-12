@@ -1,20 +1,20 @@
 Help on supersh:
 
 DESCRIPTION
-    supersh is shell app which can evaluate mathematical
+    supersh is a shell app which can evaluate mathematical
     expresions, store data in variables, save values of variables
     into a file and more...
 
 
 COMMANDS
     #exit
-        Quit (this means do not show another supersh prompt)
+        Quit (this means do not show another fancy supersh prompt)
 
     #help
         Show this help (in standard output).
     
     #var <name> = <value> // can be shortened to $<name> = <value>
-        Assigns <value> to a variable <name>.
+        Assign <value> to a variable <name>.
         <value> can be of type int, float or str (or it can be
         an expression - see below)
         Naming convention:
@@ -22,15 +22,17 @@ COMMANDS
             and it should contain only A-Z, a-z, 0-9 and underscore (_).
     
     #save <filename>
-        Saves current values of variables to file with name <filename>.
-        This values can be restored even after killing app or rebooting
+        Save current values of variables to the file with name <filename>.
+        These values can be restored even after killing app or rebooting
         computer.
+        Values are saved in form <name>;<value> (each variable on 
+        a separate line)
         If no <filename> is provided, values are saved to vars.txt
     
     #load <filename>
-        Loads variable values from file with name <filename>.
+        Load variable values from file with name <filename>.
         If no <filename> is provided, values are loaded from vars.txt
-        NOTE: Current variables could be overridden by those in this file.
+        NOTE: Current variables can be overwritten by those in this file.
 
 
 EXPRESSIONS

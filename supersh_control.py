@@ -1,12 +1,12 @@
 import os
 
-globs = {'__name__': '', '__doc__': '', '__package__': {}, '__loader__': {}, 
-        '__spec__': {}, '__annotations__': {}, '__builtins__': {}}
+globs = {'__name__': '', '__doc__': '', '__package__': {}, '__loader__': {},
+         '__spec__': {}, '__annotations__': {}, '__builtins__': {}}
 
 error_type = {
-        SyntaxError: 'NotSupershSyntaxError',
-        NameError: 'NoVariableWithThatNameError',
-        ZeroDivisionError: 'CantDevideByZeroError',
+        SyntaxError: 'SupershSyntaxError',
+        NameError: 'NoVariableWithThisNameError',
+        ZeroDivisionError: 'InfinityError',
         TypeError: 'MessedTypesError'
     }
 
@@ -23,7 +23,7 @@ class SupershError(Exception):
         return False
 
 
-def supersh_valid(cmd: str, 
+def supersh_valid(cmd: str,
                   var: dict[str, int | float | str]) -> bool | SupershError:
     if cmd in {'#exit', '#help', '#save'}:
         return True
@@ -36,10 +36,11 @@ def supersh_valid(cmd: str,
         if file not in os.listdir():
             return SupershError('FileDoesNotExistError')
         return True
-    
+
     elif cmd.startswith('#save'):
         file = cmd[6:]
-        if '.' not in file or any([x in file for x in r"""#/|\$%!`<>*&?="':@{}"""]):
+        if '.' not in file or \
+                any([x in file for x in r"""#/|\$%!`<>*&?="':@{}"""]):
             return SupershError('InvalidFileNameError')
 
     elif cmd.startswith('$') or cmd.startswith('#var '):
@@ -50,12 +51,14 @@ def supersh_valid(cmd: str,
         if ' = ' not in cmd:
             return SupershError(error_type[SyntaxError])
         name, value = cmd.split(' = ')
-        charset = set(range(65, 91)).union(set(range(97, 123))).union({95}).union(range(48, 58))
-        if any([ord(char) not in charset for char in name]) or name[0].isdigit():
+        charset = set(range(65, 91)) | set(range(97, 123)) \
+            | {95} | set(range(48, 58))
+        if any([ord(ch) not in charset for ch in name]) or name[0].isdigit():
             return SupershError('InvalidVariableNameError')
         cmd = value
     try:
-        eval(cmd, globs | var)
+        if type(eval(cmd, globs | var)) not in [int, float, str]:
+            return SupershError('StrangeTypeError')
     except (SyntaxError, NameError, ZeroDivisionError, TypeError) as exc:
         return SupershError(error_type[type(exc)])
     return True
