@@ -25,7 +25,10 @@ class SupershError(Exception):
 
 def supersh_valid(cmd: str,
                   var: dict[str, int | float | str]) -> bool | SupershError:
-    if cmd in {'#exit', '#help', '#save'}:
+    if cmd == '':
+        return True
+    
+    elif cmd in {'#exit', '#help', '#save'}:
         return True
 
     elif cmd.startswith('#load'):

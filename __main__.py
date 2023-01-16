@@ -15,7 +15,7 @@ while True:
 
     # If input is valid, evaluate commands or expressions
     # ↓↓↓ HERE WRITE YOUR CODE ↓↓↓
-    if ...:
+    elif ...:
         pass
 
 
