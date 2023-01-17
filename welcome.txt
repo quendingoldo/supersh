@@ -1,0 +1,2 @@
+supersh 1.0 (Jan 17 2022)
+Type "#help" for more information.

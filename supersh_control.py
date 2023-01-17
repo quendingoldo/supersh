@@ -10,6 +10,8 @@ error_type = {
         TypeError: 'MessedTypesError'
     }
 
+WELCOMEFILE = 'welcome.txt'
+
 
 class SupershError(Exception):
     def __init__(self, name: str) -> None:
@@ -65,3 +67,8 @@ def supersh_valid(cmd: str,
     except (SyntaxError, NameError, ZeroDivisionError, TypeError) as exc:
         return SupershError(error_type[type(exc)])
     return True
+
+
+def welcome() -> None:
+    with open(WELCOMEFILE, 'r') as file:
+        print(file.read())

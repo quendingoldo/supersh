@@ -1,9 +1,12 @@
-from supersh_control import globs, supersh_valid
+from supersh_control import welcome, globs, supersh_valid
 
 PROMPT = '$$=> '
 HELPFILE = 'help.txt'
+var = {}  #here are stored variables
 
-var = {}
+# show welcome info
+welcome()
+
 
 while True:
     # Load input and check its validity.
@@ -19,8 +22,8 @@ while True:
         pass
 
 
-
-
     else:
         # If the input is only an expression, print value
         print(eval(cmd, globs | var))
+
+
