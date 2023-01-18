@@ -7,7 +7,7 @@ DESCRIPTION
 
 
 COMMANDS
-    <empty command>
+    <empty_command>
         Do nothing (show prompt).
 
     #exit
